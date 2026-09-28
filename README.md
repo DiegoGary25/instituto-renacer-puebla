@@ -18,6 +18,7 @@ Para generar la versión de producción: `npm run build`.
 - Los retratos del equipo se detectan desde `assets/MIEMBROS RENACER`. El nombre del archivo debe comenzar con el nombre de la persona; puede seguir `_` y una descripción. Para Aline Vivanco, Joshua Delgado y Erika Muñoz se muestran marcadores hasta que se agreguen sus PNG.
 - El archivo de Diego dice «Morales», mientras que la lista entregada dice «Molares». El retrato está asociado provisionalmente a la entrada de la lista.
 - Existe un retrato de Paulina Fernández en `assets`, pero no está en la lista de integrantes entregada; por ahora no aparece en el carrusel.
+- La imagen de la sección «Nuestro enfoque» usa una copia WebP optimizada de `IMAGEN PROMOCIONAL 3.png`. Si se reemplaza el PNG original, ejecuta `npm run assets:optimize` para regenerar la copia web.
 
 ## Revisión visual
 

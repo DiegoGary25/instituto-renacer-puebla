@@ -7,7 +7,8 @@
     "dev": "vite --host 0.0.0.0",
     "build": "vite build",
     "preview": "vite preview --host 0.0.0.0",
-    "qa:visual": "node scripts/visual-qa.mjs"
+    "qa:visual": "node scripts/visual-qa.mjs",
+    "assets:optimize": "node scripts/optimize-philosophy-image.mjs"
   },
   "dependencies": {
     "@fontsource/inter": "^5.2.6",
@@ -19,6 +20,7 @@
   "devDependencies": {
     "@vitejs/plugin-react": "^4.7.0",
     "playwright-core": "^1.63.0",
+    "sharp": "^0.35.5",
     "vite": "^6.3.5"
   }
 }

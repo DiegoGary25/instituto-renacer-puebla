@@ -17,7 +17,7 @@ try {
     ['tablet', 820, 1180],
     ['mobile', 390, 844],
   ]) {
-    const page = await browser.newPage({ viewport: { width, height }, deviceScaleFactor: 1 })
+    const page = await browser.newPage({ viewport: { width, height }, deviceScaleFactor: 1, reducedMotion: 'reduce' })
     await page.goto(url, { waitUntil: 'networkidle' })
     await page.evaluate(async () => {
       const images = [...document.images]
@@ -26,7 +26,7 @@ try {
     })
     await page.screenshot({ path: path.join(output, `${name}-full.png`), fullPage: true })
     await page.screenshot({ path: path.join(output, `${name}-top.png`) })
-    for (const section of ['.pillars', '.team', '.family']) {
+    for (const section of ['.intro', '.philosophy', '.pillars', '.team', '.family']) {
       await page.locator(section).screenshot({ path: path.join(output, `${name}-${section.slice(1)}.png`) })
     }
     if (name === 'desktop') {
@@ -65,6 +65,13 @@ try {
     console.log(`${name}: ${state.viewport}px wide, ${state.documentHeight}px tall, ${state.teamMembers} team members, no overflow or broken images`)
     await page.close()
   }
+  const motionPage = await browser.newPage({ viewport: { width: 1440, height: 900 } })
+  await motionPage.goto(url, { waitUntil: 'networkidle' })
+  await motionPage.locator('.intro h2').scrollIntoViewIfNeeded()
+  await motionPage.waitForFunction(() => getComputedStyle(document.querySelector('.intro h2')).opacity === '1')
+  assert.equal(await motionPage.evaluate(() => document.documentElement.classList.contains('motion-ready')), true)
+  await motionPage.close()
+  console.log('Scroll reveal: visible after entering viewport')
   console.log(`Screenshots: ${output}`)
 } finally {
   await browser.close()

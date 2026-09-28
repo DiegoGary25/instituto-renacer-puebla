@@ -4,6 +4,7 @@ import logo from '../assets/PNG/LOGOTIPO_1.png'
 import footerLogo from '../assets/PNG/IMAGOTIPO_2.png'
 import heroPhoto from '../assets/IMAGEN PROMOCIONAL 2.jpg'
 import familyPhoto from '../assets/IMAGEN PROMOCIONAL 1.png'
+import philosophyPhoto from '../assets/web/IMAGEN_PROMOCIONAL_3.webp'
 import { contact, whatsappUrl } from './siteContent.js'
 
 const portraitFiles = import.meta.glob('../assets/MIEMBROS RENACER/*.png', {
@@ -112,12 +113,13 @@ function Intro() {
   return (
     <section className="intro section" id="renacer" aria-labelledby="intro-title">
       <div className="container intro-layout">
-        <div className="section-kicker">01 / Bienvenidos a Renacer</div>
+        <div className="intro-media"><img src={familyPhoto} alt="Una mujer joven y una mujer mayor comparten un abrazo" loading="lazy" /></div>
         <div className="intro-main">
+          <p className="section-kicker">Quiénes somos</p>
           <h2 id="intro-title">Un lugar donde la atención se convierte en <span>calidad de vida.</span></h2>
           <div className="intro-bottom">
             <p>Somos una residencia para adultos mayores en Puebla. Nuestro enfoque reúne acompañamiento cercano, planes individuales y un equipo multidisciplinario para atender a cada persona de forma integral.</p>
-            <TextLink href="#servicios">Conoce cómo acompañamos</TextLink>
+            <TextLink href="#servicios">Descubre cómo acompañamos</TextLink>
           </div>
         </div>
       </div>
@@ -129,12 +131,14 @@ function Philosophy() {
   return (
     <section className="philosophy section" id="enfoque" aria-labelledby="philosophy-title">
       <div className="container philosophy-layout">
-        <div className="philosophy-mark" aria-hidden="true"><span>vida.</span><small>en cada etapa</small></div>
+        <div className="philosophy-visual">
+          <div className="philosophy-word" aria-hidden="true"><span>vida.</span><small>en cada etapa</small></div>
+          <img src={philosophyPhoto} alt="Mujer mayor sonriendo al observar unas flores" loading="lazy" />
+        </div>
         <div className="philosophy-copy">
-          <p className="eyebrow eyebrow--light"><span className="eyebrow-line" /> Nuestra forma de entender esta etapa</p>
+          <p className="eyebrow eyebrow--light"><span className="eyebrow-line" /> Una forma de entender esta etapa</p>
           <h2 id="philosophy-title">El bienestar se construye <em>todos los días.</em></h2>
           <p>Creemos en actuar antes de que aparezca la dependencia: cuidar el movimiento, la mente, la alimentación y los vínculos que dan sentido a la vida cotidiana.</p>
-          <span className="philosophy-foot">Prevención · Independencia · Conexión</span>
         </div>
       </div>
     </section>
@@ -303,6 +307,48 @@ function Footer() {
 }
 
 export default function App() {
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return
+
+    const visualSelectors = '.hero-media, .intro-media, .philosophy-visual, .life-visual, .family-media'
+    const groupSelectors = '.pillar-item, .service-row, .team-person'
+    const targetSelectors = `${visualSelectors}, ${groupSelectors}, main section h1, main section h2, main section h3, main section p, main section img`
+    const targets = [...document.querySelectorAll(targetSelectors)].filter((element) => {
+      const parent = element.closest(`${visualSelectors}, ${groupSelectors}`)
+      return !parent || parent === element
+    })
+
+    const sectionCounts = new Map()
+    targets.forEach((element) => {
+      element.classList.add('reveal-target')
+      if (element.matches(visualSelectors)) element.dataset.reveal = 'image'
+      if (element.matches('.pillar-item')) {
+        const index = [...element.parentElement.children].indexOf(element)
+        element.style.setProperty('--reveal-delay', `${Math.min(index * 55, 275)}ms`)
+      } else {
+        const section = element.closest('section')
+        const index = sectionCounts.get(section) || 0
+        element.style.setProperty('--reveal-delay', `${Math.min(index * 45, 180)}ms`)
+        sectionCounts.set(section, index + 1)
+      }
+    })
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return
+        entry.target.classList.add('is-visible')
+        observer.unobserve(entry.target)
+      })
+    }, { threshold: 0.08, rootMargin: '0px 0px -3% 0px' })
+
+    targets.forEach((element) => observer.observe(element))
+    document.documentElement.classList.add('motion-ready')
+    return () => {
+      observer.disconnect()
+      document.documentElement.classList.remove('motion-ready')
+    }
+  }, [])
+
   return <>
     <a className="skip-link" href="#contenido">Ir al contenido</a>
     <Header />
