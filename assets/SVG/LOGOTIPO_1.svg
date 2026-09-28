@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_2" data-name="Capa 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 359.14">
+  <defs>
+    <style>
+      .cls-1 {
+        letter-spacing: .1em;
+      }
+
+      .cls-2 {
+        letter-spacing: .1em;
+      }
+
+      .cls-3 {
+        letter-spacing: .08em;
+      }
+
+      .cls-4 {
+        letter-spacing: .09em;
+      }
+
+      .cls-5 {
+        letter-spacing: .1em;
+      }
+
+      .cls-6 {
+        letter-spacing: .11em;
+      }
+
+      .cls-7 {
+        letter-spacing: .11em;
+      }
+
+      .cls-8 {
+        letter-spacing: .5em;
+      }
+
+      .cls-9 {
+        fill: none;
+        stroke: #808f66;
+        stroke-linecap: round;
+        stroke-miterlimit: 10;
+        stroke-width: 4.41px;
+      }
+
+      .cls-10 {
+        letter-spacing: .55em;
+      }
+
+      .cls-11 {
+        font-family: Halcom-Medium, Halcom;
+        font-size: 50.24px;
+        font-weight: 500;
+      }
+
+      .cls-11, .cls-12 {
+        fill: #023a27;
+      }
+
+      .cls-12 {
+        font-family: Cinzel-SemiBold, Cinzel;
+        font-size: 159.15px;
+        font-weight: 600;
+      }
+    </style>
+  </defs>
+  <text class="cls-12" transform="translate(91.46 267.68)"><tspan class="cls-4" x="0" y="0">R</tspan><tspan class="cls-5" x="129.87" y="0">E</tspan><tspan class="cls-1" x="243.98" y="0">N</tspan><tspan class="cls-3" x="396.44" y="0">A</tspan><tspan class="cls-7" x="522.49" y="0">C</tspan><tspan class="cls-2" x="662.7" y="0">E</tspan><tspan class="cls-6" x="776.81" y="0">R </tspan></text>
+  <text class="cls-11" transform="translate(288.12 126.01)"><tspan class="cls-10" x="0" y="0">INSTITU</tspan><tspan class="cls-8" x="393.65" y="0">T</tspan><tspan class="cls-10" x="449.78" y="0">O</tspan></text>
+  <line class="cls-9" x1="159.67" y1="109.03" x2="250.74" y2="109.03"/>
+  <line class="cls-9" x1="814.38" y1="107.85" x2="905.44" y2="107.85"/>
+</svg>

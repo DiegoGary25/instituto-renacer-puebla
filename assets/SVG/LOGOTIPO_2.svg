@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_2" data-name="Capa 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 500.02">
+  <defs>
+    <style>
+      .cls-1 {
+        letter-spacing: .18em;
+      }
+
+      .cls-2 {
+        fill: #808f66;
+        font-size: 35.26px;
+      }
+
+      .cls-2, .cls-3, .cls-4 {
+        font-family: Halcom-Medium, Halcom;
+        font-weight: 500;
+      }
+
+      .cls-5 {
+        letter-spacing: .1em;
+      }
+
+      .cls-6 {
+        letter-spacing: .17em;
+      }
+
+      .cls-7 {
+        letter-spacing: .17em;
+      }
+
+      .cls-7, .cls-8, .cls-9 {
+        font-size: 34.79px;
+      }
+
+      .cls-10 {
+        letter-spacing: .1em;
+      }
+
+      .cls-11 {
+        letter-spacing: .08em;
+      }
+
+      .cls-12 {
+        letter-spacing: .09em;
+      }
+
+      .cls-13 {
+        letter-spacing: .1em;
+      }
+
+      .cls-3, .cls-4, .cls-14 {
+        fill: #023a27;
+      }
+
+      .cls-15 {
+        font-size: 40.47px;
+      }
+
+      .cls-16 {
+        letter-spacing: .11em;
+      }
+
+      .cls-17 {
+        letter-spacing: .2em;
+      }
+
+      .cls-18 {
+        letter-spacing: .11em;
+      }
+
+      .cls-19 {
+        letter-spacing: .5em;
+      }
+
+      .cls-20 {
+        fill: none;
+        stroke: #808f66;
+        stroke-linecap: round;
+        stroke-miterlimit: 10;
+        stroke-width: 4.41px;
+      }
+
+      .cls-21 {
+        letter-spacing: .22em;
+      }
+
+      .cls-8 {
+        letter-spacing: .13em;
+      }
+
+      .cls-22 {
+        letter-spacing: .26em;
+      }
+
+      .cls-23 {
+        letter-spacing: .55em;
+      }
+
+      .cls-4 {
+        font-size: 50.24px;
+      }
+
+      .cls-9 {
+        letter-spacing: .17em;
+      }
+
+      .cls-14 {
+        font-family: Cinzel-SemiBold, Cinzel;
+        font-size: 159.15px;
+        font-weight: 600;
+      }
+    </style>
+  </defs>
+  <text class="cls-14" transform="translate(91.46 257.8)"><tspan class="cls-12" x="0" y="0">R</tspan><tspan class="cls-13" x="129.87" y="0">E</tspan><tspan class="cls-5" x="243.98" y="0">N</tspan><tspan class="cls-11" x="396.44" y="0">A</tspan><tspan class="cls-18" x="522.49" y="0">C</tspan><tspan class="cls-10" x="662.7" y="0">E</tspan><tspan class="cls-16" x="776.81" y="0">R </tspan></text>
+  <text class="cls-4" transform="translate(288.12 116.13)"><tspan class="cls-23" x="0" y="0">INSTITU</tspan><tspan class="cls-19" x="393.65" y="0">T</tspan><tspan class="cls-23" x="449.78" y="0">O</tspan></text>
+  <text class="cls-3" transform="translate(133.92 341.63)"><tspan class="cls-9" x="0" y="0">REDEFINIENDO EL ENVEJ</tspan><tspan class="cls-7" x="562.6" y="0">E</tspan><tspan class="cls-9" x="590.26" y="0">CIMIEN</tspan><tspan class="cls-8" x="753.6" y="0">T</tspan><tspan class="cls-9" x="779.42" y="0">O</tspan><tspan class="cls-15" x="814.94" y="0"> </tspan></text>
+  <text class="cls-2" transform="translate(340.2 407.57)"><tspan class="cls-22" x="0" y="0">ADU</tspan><tspan class="cls-1" x="107.96" y="0">L</tspan><tspan class="cls-21" x="134.23" y="0">T</tspan><tspan class="cls-22" x="163.63" y="0">O M</tspan><tspan class="cls-6" x="261.72" y="0">A</tspan><tspan class="cls-17" x="293.84" y="0">Y</tspan><tspan class="cls-22" x="325.96" y="0">OR </tspan></text>
+  <line class="cls-20" x1="159.67" y1="99.15" x2="250.74" y2="99.15"/>
+  <line class="cls-20" x1="99.41" y1="286.02" x2="980.89" y2="286.02"/>
+  <line class="cls-20" x1="814.38" y1="97.97" x2="905.44" y2="97.97"/>
+  <line class="cls-20" x1="254.18" y1="395.52" x2="310.27" y2="395.52"/>
+  <line class="cls-20" x1="756.69" y1="394.93" x2="812.78" y2="394.93"/>
+</svg>
