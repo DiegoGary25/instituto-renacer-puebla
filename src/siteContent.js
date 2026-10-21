@@ -1,9 +1,9 @@
-// Completa estos datos cuando Instituto Renacer los confirme.
+// Datos de contacto confirmados de Instituto Renacer.
 export const contact = {
-  phone: '',
-  whatsapp: '',
+  phone: '+52 222 653 5528',
+  whatsapp: '+522226535528',
   email: '',
-  address: '',
+  address: 'Puebla',
   instagram: '',
 }
 
