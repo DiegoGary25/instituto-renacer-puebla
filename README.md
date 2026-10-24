@@ -13,7 +13,7 @@ Para generar la versión de producción: `npm run build`.
 
 ## Contenido pendiente
 
-- El teléfono y WhatsApp están configurados en `src/siteContent.js`: +52 222 653 5528. Los enlaces para agendar abren WhatsApp con un mensaje preparado; el envío lo confirma la persona. La ubicación muestra Puebla y el correo se omite mientras esté vacío.
+- El teléfono y WhatsApp están configurados en `src/siteContent.js`: +52 222 172 5326. Los enlaces para agendar abren WhatsApp con un mensaje preparado; el envío lo confirma la persona. La ubicación muestra Puebla y el correo es institutorenacerpuebla@gmail.com.
 - La sección «Vida en Renacer» presenta convivencia, movimiento y actividades recreativas. Se pueden añadir fotografías auténticas de instalaciones y actividades cuando estén disponibles.
 - Los retratos del equipo se detectan desde `assets/MIEMBROS RENACER`. El nombre del archivo debe comenzar con el nombre de la persona; puede seguir `_` y una descripción. Solo aparecen integrantes con fotografía; Aline Vivanco, Joshua Delgado y Erika Muñoz se mantienen ocultos hasta que se agreguen sus PNG.
 - El archivo de Diego dice «Morales», mientras que la lista entregada dice «Molares». El retrato está asociado provisionalmente a la entrada de la lista.

@@ -62,11 +62,11 @@ try {
       for (const href of bookingLinks) {
         const bookingUrl = new URL(href)
         assert.equal(bookingUrl.origin, 'https://wa.me', `${name}: booking must open WhatsApp`)
-        assert.equal(bookingUrl.pathname, '/522226535528', `${name}: incorrect WhatsApp number`)
+        assert.equal(bookingUrl.pathname, '/522221725326', `${name}: incorrect WhatsApp number`)
         assert.equal(bookingUrl.searchParams.get('text'), 'Hola, me gustaría agendar una visita a Instituto Renacer.', `${name}: booking message missing`)
       }
-      assert.equal(await page.locator('.footer a[href="tel:+522226535528"]').count(), 1, `${name}: footer phone missing`)
-      assert.equal(await page.locator('.footer a[href^="mailto:"]').count(), 0, `${name}: unexpected email link`)
+      assert.equal(await page.locator('.footer a[href="tel:+522221725326"]').count(), 1, `${name}: footer phone missing`)
+      assert.equal(await page.locator('.footer a[href="mailto:institutorenacerpuebla@gmail.com"]').count(), 1, `${name}: footer email missing`)
       assert.ok(!(await page.locator('.footer').innerText()).includes('Correo por agregar'), `${name}: email placeholder visible`)
       assert.equal((await page.locator('.footer-contact p').last().innerText()).trim(), 'Puebla', `${name}: incorrect location`)
       assert.equal(await page.locator('.life-visual').getByText('Próximamente').count(), 0, `${name}: daily life placeholder visible`)
