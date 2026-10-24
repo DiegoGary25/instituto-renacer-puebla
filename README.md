@@ -22,4 +22,4 @@ Para generar la versión de producción: `npm run build`.
 
 ## Revisión visual
 
-Inicia el servidor con `npm run dev -- --port 4173` y ejecuta `npm run qa:visual`. Usa Chrome local y guarda capturas por sección a 1440, 820, 390 y 320 px en la carpeta temporal `renacer-visual-qa/current` del sistema. `RENACER_QA_PHASE` permite guardar revisiones separadas, como `before` y `after`. También verifica los enlaces de contacto, la navegación móvil, el carrusel y la ausencia de desbordamientos e imágenes rotas.
+Inicia el servidor con `npm run dev -- --port 4173` y ejecuta `npm run qa:visual`. Usa Chrome local y guarda capturas por sección en ocho resoluciones de escritorio, laptop, tableta y móvil, incluida orientación horizontal, en la carpeta temporal `renacer-visual-qa/current` del sistema. `RENACER_QA_PHASE` permite guardar revisiones separadas, como `before` y `after`. También verifica que el hero y el navbar quepan juntos en la pantalla, los enlaces de contacto, la navegación móvil, el carrusel y la ausencia de desbordamientos e imágenes rotas.

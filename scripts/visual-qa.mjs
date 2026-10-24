@@ -14,9 +14,13 @@ const browser = await chromium.launch({ executablePath: chrome, headless: true }
 try {
   for (const [name, width, height] of [
     ['desktop', 1440, 900],
+    ['laptop', 1366, 768],
+    ['desktop-small', 1280, 720],
     ['tablet', 820, 1180],
     ['mobile', 390, 844],
+    ['mobile-short', 375, 667],
     ['mobile-small', 320, 740],
+    ['landscape', 844, 390],
   ]) {
     const page = await browser.newPage({ viewport: { width, height }, deviceScaleFactor: 1, reducedMotion: 'reduce' })
     await page.goto(url, { waitUntil: 'networkidle' })
@@ -48,6 +52,14 @@ try {
       brokenImages: [...document.images].filter((image) => !image.complete || !image.naturalWidth).map((image) => image.src),
       teamMembers: document.querySelectorAll('.team-person').length,
       headings: [...document.querySelectorAll('h1')].map((heading) => heading.textContent.trim()),
+      heroEnd: document.querySelector('.hero').getBoundingClientRect().bottom + window.scrollY,
+      heroHeight: document.querySelector('.hero').getBoundingClientRect().height,
+      headerHeight: document.querySelector('.site-header').getBoundingClientRect().height,
+      clippedHeroContent: [...document.querySelectorAll('.hero h1, .hero-lead, .hero-actions, .hero-media')].filter((element) => {
+        const bounds = element.getBoundingClientRect()
+        const heroBounds = document.querySelector('.hero').getBoundingClientRect()
+        return bounds.top < heroBounds.top - 1 || bounds.bottom > heroBounds.bottom + 1
+      }).map((element) => element.className || element.tagName),
     }))
 
     assert.equal(state.documentWidth, state.viewport, `${name}: horizontal page overflow`)
@@ -55,6 +67,11 @@ try {
     assert.equal(state.teamMembers, 8, `${name}: expected eight team members with photos`)
     assert.equal(await page.locator('.team-person:not(:has(.team-portrait img))').count(), 0, `${name}: team member without a photo`)
     assert.equal(state.headings.length, 1, `${name}: expected one main heading`)
+    assert.ok(Math.abs(state.heroEnd - height) <= 2, `${name}: navbar + hero = ${state.heroEnd}px, viewport = ${height}px`)
+    assert.deepEqual(state.clippedHeroContent, [], `${name}: hero content is clipped`)
+    assert.equal(await page.locator('.service-icon').count(), 4, `${name}: service icons missing`)
+    assert.equal(await page.locator('main section > .container .section-kicker').count(), 9, `${name}: inconsistent section labels`)
+    assert.ok(!(await page.locator('.footer').innerText()).includes('Instagram por agregar'), `${name}: Instagram placeholder visible`)
 
     if (process.env.RENACER_QA_PHASE !== 'before') {
       const bookingLinks = await page.locator('a').filter({ hasText: /Agenda una visita/ }).evaluateAll((links) => links.map((link) => link.href))
@@ -80,7 +97,7 @@ try {
       assert.equal(await page.getByRole('button', { name: 'Abrir menú' }).getAttribute('aria-expanded'), 'false')
     }
 
-    console.log(`${name}: ${state.viewport}px wide, ${state.documentHeight}px tall, ${state.teamMembers} team members, no overflow or broken images`)
+    console.log(`${name}: ${state.viewport} × ${height}px, navbar ${state.headerHeight}px + hero ${state.heroHeight}px, no overflow or broken images`)
     await page.close()
   }
   const motionPage = await browser.newPage({ viewport: { width: 1440, height: 900 } })

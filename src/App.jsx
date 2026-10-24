@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Apple, ArrowLeft, ArrowRight, ArrowUpRight, Brain, Check, Dumbbell, HeartHandshake, Mail, MapPin, Menu, MessageCircle, Moon, Phone, Sprout, X } from 'lucide-react'
+import { Apple, ArrowLeft, ArrowRight, ArrowUpRight, Brain, Check, Dumbbell, Footprints, HeartHandshake, Mail, MapPin, Menu, MessageCircle, Moon, Phone, Sprout, Stethoscope, Sun, UsersRound, Utensils, X } from 'lucide-react'
 import logo from '../assets/PNG/LOGOTIPO_1.png'
 import footerLogo from '../assets/PNG/IMAGOTIPO_2.png'
 import heroPhoto from '../assets/IMAGEN PROMOCIONAL 2.jpg'
@@ -64,6 +64,17 @@ function TextLink({ href, children, light = false }) {
 
 function Header() {
   const [open, setOpen] = useState(false)
+  const header = useRef(null)
+  useEffect(() => {
+    const updateHeight = () => document.documentElement.style.setProperty('--header-height', `${header.current.offsetHeight}px`)
+    updateHeight()
+    const observer = new ResizeObserver(updateHeight)
+    observer.observe(header.current)
+    return () => {
+      observer.disconnect()
+      document.documentElement.style.removeProperty('--header-height')
+    }
+  }, [])
   useEffect(() => {
     if (!open) return
     const closeOnEscape = (event) => { if (event.key === 'Escape') setOpen(false) }
@@ -71,7 +82,7 @@ function Header() {
     return () => window.removeEventListener('keydown', closeOnEscape)
   }, [open])
   return (
-    <header className="site-header" id="inicio">
+    <header className="site-header" id="inicio" ref={header}>
       <div className="container header-inner">
         <a className="brand-link" href="#inicio" aria-label="Instituto Renacer Puebla, ir al inicio"><img src={logo} alt="Instituto Renacer" /></a>
         <nav className={`main-nav${open ? ' main-nav--open' : ''}`} id="main-nav" aria-label="Navegación principal">
@@ -92,14 +103,13 @@ function Hero() {
     <section className="hero" aria-labelledby="hero-title">
       <div className="container hero-layout">
         <div className="hero-copy">
-          <p className="eyebrow"><span className="eyebrow-line" /> Residencia para adultos mayores en Puebla</p>
+          <p className="section-kicker">Residencia para adultos mayores en Puebla</p>
           <h1 id="hero-title">Bienestar y compañía para seguir viviendo <em>plenamente.</em></h1>
           <p className="hero-lead">En Instituto Renacer acompañamos a cada persona con atención integral y personalizada, cuidando su salud, su independencia y su vida cotidiana.</p>
           <div className="hero-actions">
             <a className="button" href={whatsappUrl}>Agenda una visita <ArrowUpRight size={19} strokeWidth={1.8} aria-hidden="true" /></a>
             <TextLink href="#enfoque">Conoce nuestro enfoque</TextLink>
           </div>
-          <div className="hero-caption"><span>Calidez humana</span><span className="caption-separator" /><span>Atención profesional</span></div>
         </div>
         <div className="hero-media">
           <img src={heroPhoto} alt="Mujer mayor sonriendo mientras observa unas flores" fetchPriority="high" />
@@ -137,7 +147,7 @@ function Philosophy() {
           <img src={philosophyPhoto} alt="Mujer mayor sonriendo al observar unas flores" loading="lazy" />
         </div>
         <div className="philosophy-copy">
-          <p className="eyebrow eyebrow--light"><span className="eyebrow-line" /> Una forma de entender esta etapa</p>
+          <p className="section-kicker section-kicker--light">Una forma de entender esta etapa</p>
           <h2 id="philosophy-title">El bienestar se construye <em>todos los días.</em></h2>
           <p>Creemos en actuar antes de que aparezca la dependencia: cuidar el movimiento, la mente, la alimentación y los vínculos que dan sentido a la vida cotidiana.</p>
         </div>
@@ -151,10 +161,9 @@ function Pillars() {
     <section className="pillars section" aria-labelledby="pillars-title">
       <div className="container pillars-layout">
         <div className="pillars-intro">
-          <p className="section-kicker">02 / Nuestro enfoque</p>
+          <p className="section-kicker">Nuestro enfoque</p>
           <h2 id="pillars-title">Seis pilares.<br /><span>Una vida con más posibilidades.</span></h2>
           <p>Esta es la base de nuestra forma de acompañar el envejecimiento: mirar a la persona completa, no sólo sus necesidades de cuidado.</p>
-          <span className="pillar-index">01 — 06</span>
         </div>
         <ol className="pillar-list">
           {pillars.map(([title, description, Icon], index) => (
@@ -174,16 +183,20 @@ function Services() {
     <section className="services section" id="servicios" aria-labelledby="services-title">
       <div className="container services-layout">
         <div className="services-heading">
-          <p className="section-kicker">03 / Acompañamiento profesional</p>
-          <h2 id="services-title">Cuidado profesional.<br /><em>A su medida.</em></h2>
-          <p>Cada persona necesita apoyos distintos. Reunimos atención en salud, movimiento y bienestar en un plan individual.</p>
-          <TextLink href="#equipo">Conoce a quienes le acompañan</TextLink>
+          <div>
+            <p className="section-kicker">Acompañamiento profesional</p>
+            <h2 id="services-title">Cuidado profesional.<br /><em>A su medida.</em></h2>
+          </div>
+          <div className="services-intro">
+            <p>Cada persona necesita apoyos distintos. Reunimos atención en salud, movimiento y bienestar en un plan individual.</p>
+            <TextLink href="#equipo">Conoce a quienes le acompañan</TextLink>
+          </div>
         </div>
         <div className="service-list">
-          <article className="service-row"><span className="service-number">01</span><div><h3>Salud y seguimiento</h3><p>Enfermería, seguimiento médico y apoyo con medicamentos para cuidar su salud día a día.</p></div></article>
-          <article className="service-row"><span className="service-number">02</span><div><h3>Movimiento y rehabilitación</h3><p>Rehabilitación física y pulmonar, y actividad física para conservar movilidad e independencia.</p></div></article>
-          <article className="service-row"><span className="service-number">03</span><div><h3>Mente y bienestar emocional</h3><p>Estimulación cognitiva y acompañamiento psicológico para cuidar la mente y las emociones.</p></div></article>
-          <article className="service-row"><span className="service-number">04</span><div><h3>Nutrición y convivencia</h3><p>Alimentación, apoyo nutricional y actividades compartidas para nutrir el cuerpo y los vínculos.</p></div></article>
+          <article className="service-row"><Stethoscope className="service-icon" size={34} strokeWidth={1.5} aria-hidden="true" /><div><h3>Salud y seguimiento</h3><p>Enfermería, seguimiento médico y apoyo con medicamentos para cuidar su salud día a día.</p></div></article>
+          <article className="service-row"><Dumbbell className="service-icon" size={34} strokeWidth={1.5} aria-hidden="true" /><div><h3>Movimiento y rehabilitación</h3><p>Rehabilitación física y pulmonar, y actividad física para conservar movilidad e independencia.</p></div></article>
+          <article className="service-row"><HeartHandshake className="service-icon" size={34} strokeWidth={1.5} aria-hidden="true" /><div><h3>Mente y bienestar emocional</h3><p>Estimulación cognitiva y acompañamiento psicológico para cuidar la mente y las emociones.</p></div></article>
+          <article className="service-row"><Utensils className="service-icon" size={34} strokeWidth={1.5} aria-hidden="true" /><div><h3>Nutrición y convivencia</h3><p>Alimentación, apoyo nutricional y actividades compartidas para nutrir el cuerpo y los vínculos.</p></div></article>
         </div>
       </div>
     </section>
@@ -221,7 +234,7 @@ function Team() {
     <section className="team section" id="equipo" aria-labelledby="team-title">
       <div className="container">
         <div className="team-heading">
-          <div><p className="section-kicker">04 / Nuestro equipo</p><h2 id="team-title">Personas detrás de cada cuidado.</h2><p>Distintas disciplinas, una misma atención cercana a quienes viven en Renacer y a sus familias.</p></div>
+          <div><p className="section-kicker">Nuestro equipo</p><h2 id="team-title">Personas detrás de cada cuidado.</h2><p>Distintas disciplinas, una misma atención cercana a quienes viven en Renacer y a sus familias.</p></div>
           <div className="carousel-controls" aria-label="Controles del equipo">
             <button type="button" aria-label="Ver integrantes anteriores" onClick={() => move(-1)} disabled={!position.prev}><ArrowLeft size={21} aria-hidden="true" /></button>
             <button type="button" aria-label="Ver siguientes integrantes" onClick={() => move(1)} disabled={!position.next}><ArrowRight size={21} aria-hidden="true" /></button>
@@ -248,7 +261,7 @@ function DailyLife() {
     <section className="life section" id="vida" aria-labelledby="life-title">
       <div className="container life-layout">
         <div className="life-copy">
-          <p className="section-kicker">05 / Vida en Renacer</p>
+          <p className="section-kicker">Vida en Renacer</p>
           <h2 id="life-title">Cada día,<br />algo que <em>disfrutar.</em></h2>
           <p>El bienestar también está en una conversación, en moverse y en compartir. En Renacer, la convivencia y las actividades forman parte del cuidado cotidiano.</p>
           <TextLink href={whatsappUrl}>Ven a conocer la residencia</TextLink>
@@ -256,9 +269,9 @@ function DailyLife() {
         <div className="life-visual">
           <p className="life-label">Pequeños momentos, más vida</p>
           <ul className="life-moments">
-            <li><h3>Convivir.</h3><p>Conversaciones y actividades sociales para crear vínculos y sentirse parte.</p></li>
-            <li><h3>Moverse.</h3><p>Movimiento y actividad física para acompañar la independencia cotidiana.</p></li>
-            <li><h3>Disfrutar.</h3><p>Actividades recreativas para participar, compartir y encontrar propósito.</p></li>
+            <li><h3><UsersRound className="life-icon" size={28} strokeWidth={1.5} aria-hidden="true" /><span>Convivir.</span></h3><p>Conversaciones y actividades sociales para crear vínculos y sentirse parte.</p></li>
+            <li><h3><Footprints className="life-icon" size={28} strokeWidth={1.5} aria-hidden="true" /><span>Moverse.</span></h3><p>Movimiento y actividad física para acompañar la independencia cotidiana.</p></li>
+            <li><h3><Sun className="life-icon" size={28} strokeWidth={1.5} aria-hidden="true" /><span>Disfrutar.</span></h3><p>Actividades recreativas para participar, compartir y encontrar propósito.</p></li>
           </ul>
         </div>
       </div>
@@ -272,7 +285,7 @@ function Family() {
       <div className="container family-layout">
         <div className="family-media"><div className="family-media-backdrop" /><img src={familyPhoto} alt="Mujer adulta y mujer mayor compartiendo un abrazo y una sonrisa" loading="lazy" /></div>
         <div className="family-copy">
-          <p className="eyebrow"><span className="eyebrow-line" /> Para quienes acompañan desde cerca</p>
+          <p className="section-kicker">Para quienes acompañan desde cerca</p>
           <h2 id="family-title">También estamos aquí para <em>tu familia.</em></h2>
           <p>Elegir una residencia es una decisión importante. Te acompañamos a conocer Renacer con calma y a conversar sobre lo que necesita tu familiar.</p>
           <div className="family-visit">
@@ -294,7 +307,7 @@ function Visit() {
   return (
     <section className="visit section" id="visita" aria-labelledby="visit-title">
       <div className="container visit-layout">
-        <div><p className="eyebrow eyebrow--light"><span className="eyebrow-line" /> El siguiente paso</p><h2 id="visit-title">Conoce Renacer <em>personalmente.</em></h2><p>Visita la residencia, conoce al equipo y resuelve tus dudas con calma.</p></div>
+        <div><p className="section-kicker section-kicker--light">El siguiente paso</p><h2 id="visit-title">Conoce Renacer <em>personalmente.</em></h2><p>Visita la residencia, conoce al equipo y resuelve tus dudas con calma.</p></div>
         <div className="visit-action"><a className="button button--cream" href={whatsappUrl}>Agenda una visita <MessageCircle size={20} aria-hidden="true" /></a><small>Escríbenos por WhatsApp para coordinar tu visita.</small></div>
       </div>
     </section>
@@ -312,7 +325,7 @@ function Footer() {
           <p><MessageCircle size={17} aria-hidden="true" /> <a href={whatsappUrl}>WhatsApp · Agenda una visita</a></p>
           {contact.email && <p><Mail size={17} aria-hidden="true" /><a href={`mailto:${contact.email}`}>{contact.email}</a></p>}
           <p><MapPin size={17} aria-hidden="true" /> {contact.address}</p>
-          {contact.instagram ? <a href={contact.instagram} target="_blank" rel="noreferrer">Instagram <ArrowUpRight size={16} aria-hidden="true" /></a> : <span className="footer-note">Instagram por agregar</span>}
+          {contact.instagram && <a href={contact.instagram} target="_blank" rel="noreferrer">Instagram <ArrowUpRight size={16} aria-hidden="true" /></a>}
         </div>
       </div>
       <div className="container footer-bottom"><span>© {new Date().getFullYear()} Instituto Renacer Puebla</span><span>Un espacio para seguir viviendo plenamente.</span></div>
